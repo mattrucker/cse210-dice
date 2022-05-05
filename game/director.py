@@ -47,7 +47,7 @@ class Director:
         """
         roll_dice = input("Roll dice? [y/n] ")
         self.is_playing = (roll_dice == "y")
-       
+
     def do_updates(self):
         """Updates the player's score.
 
@@ -55,12 +55,12 @@ class Director:
             self (Director): An instance of Director.
         """
         if not self.is_playing:
-            return 
+            return
 
         for i in range(len(self.dice)):
             die = self.dice[i]
             die.roll()
-            self.score += die.points 
+            self.score += die.points
         self.total_score += self.score
 
     def do_outputs(self):
@@ -71,11 +71,13 @@ class Director:
         """
         if not self.is_playing:
             return
-        
+
         values = ""
         for i in range(len(self.dice)):
             die = self.dice[i]
             values += f"{die.value} "
+            if values == 0:
+                return
 
         print(f"You rolled: {values}")
         print(f"Your score is: {self.total_score}\n")
